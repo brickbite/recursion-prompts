@@ -143,6 +143,27 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  if (string.length === 1) {
+    return true;
+  } else if (string.length === 2) {
+    return string.charAt(0).toUpperCase() === string.charAt(1).toUpperCase();
+  }
+  
+  if (string.charAt(0) === ' ' || string.charAt(string.length - 1) === ' ') {
+    if (string.charAt(0) === ' ' && string.charAt(string.length - 1) === ' ') {
+      return palindrome(string.slice(1, string.length - 1)); 
+    } else if (string.charAt(0) === ' ' && string.charAt(string.length - 1) !== ' ') {
+      return palindrome(string.slice(1, string.length)); 
+    } else if (string.charAt(0) !== ' ' && string.charAt(string.length - 1) === ' ') {
+      return palindrome(string.slice(0, string.length - 1)); 
+    }
+  }
+  
+  if (string.charAt(0).toUpperCase() !== string.charAt(string.length - 1).toUpperCase()) {
+    return false;
+  }
+  
+  return palindrome(string.slice(1, string.length - 1)); 
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
